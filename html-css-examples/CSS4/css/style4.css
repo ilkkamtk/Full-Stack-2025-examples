@@ -1,36 +1,96 @@
 .container {
-    width: 80%;
-    margin: auto;
+  width: 100%;
+}
+
+.btn {
+  padding: 0.5rem;
+  background-color: rgb(24, 127, 191);
+  color: rgb(238, 238, 238);
+  text-decoration: none;
+}
+
+html {
+  font-family: system-ui;
+}
+
+body {
+  margin: 0;
 }
 
 header {
-    background-color: cadetblue;
+  background-color: cadetblue;
+  padding: 1rem;
 }
 
 nav {
-    background-color: burlywood;
+  background-color: burlywood;
+  line-height: 3rem;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  flex: auto;
+  text-align: center;
 }
 
 main {
-    background-color: #9c9cac;
+  background-color: #9c9cac;
+  padding: 1rem;
 }
 
-section {
-    background-color: gold;
+section h2 {
+  text-align: center;
+  width: 100%;
 }
 
 article {
-    background-color: indianred;
+  box-sizing: border-box;
+  background-color: rgb(238, 238, 238);
+  flex: auto;
+  margin: 0.5rem;
+  padding: 1rem;
+}
+
+article img {
+  max-width: 100%;
 }
 
 aside {
-    background-color: gainsboro;
+  background-color: gainsboro;
 }
 
 footer {
-    background-color: teal;
+  background-color: teal;
+  padding: 1rem;
+}
+
+footer h3 {
+  margin: 0;
 }
 
 form {
-    background-color: floralwhite;
+  background-color: floralwhite;
+  margin: 1rem;
+}
+
+@media screen and (min-width: 769px) {
+  .container {
+    width: 80%;
+    margin: auto;
+  }
+
+  section {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  article {
+    width: 30%;
+  }
 }
