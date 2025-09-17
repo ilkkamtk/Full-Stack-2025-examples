@@ -777,6 +777,8 @@ const options = {
   maximumAge: 0,
 };
 
+const target = document.querySelector('#target');
+
 function distance(pointOne, pointTwo) {
   return Math.sqrt(
     (pointTwo[0] - pointOne[0]) ** 2 + (pointTwo[1] - pointOne[1]) ** 2
@@ -794,7 +796,19 @@ function success(pos) {
     return distA - distB;
   });
 
-  console.log(restaurants);
+  for (const restaurant of restaurants) {
+    const row = document.createElement('tr');
+    const nameCell = document.createElement('td');
+    const addressCell = document.createElement('td');
+    const cityCell = document.createElement('td');
+
+    nameCell.innerText = restaurant.name;
+    addressCell.innerText = restaurant.address;
+    cityCell.innerText = restaurant.city;
+
+    row.append(nameCell, addressCell, cityCell);
+    target.append(row);
+  }
 }
 
 function error(err) {
