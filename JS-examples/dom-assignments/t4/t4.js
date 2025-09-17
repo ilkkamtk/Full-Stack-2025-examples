@@ -771,8 +771,34 @@ const restaurants = [
 ];
 
 // your code here
-function distance(x1, y1, x2, y2) {
-  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+const options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0,
+};
+
+function distance(pointOne, pointTwo) {
+  return Math.sqrt(
+    (pointTwo[0] - pointOne[0]) ** 2 + (pointTwo[1] - pointOne[1]) ** 2
+  );
 }
 
-console.log(distance(1, 1, 0, 0));
+function success(pos) {
+  const coords = pos.coords;
+  console.log(coords);
+  const myLocation = [coords.longitude, coords.latitude];
+
+  restaurants.sort(function (a, b) {
+    const distA = distance(myLocation, a.location.coordinates);
+    const distB = distance(myLocation, b.location.coordinates);
+    return distA - distB;
+  });
+
+  console.log(restaurants);
+}
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+navigator.geolocation.getCurrentPosition(success, error, options);
