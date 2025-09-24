@@ -89,11 +89,14 @@ const addRestaurantToTable = (restaurant) => {
 };
 
 async function getRestaurants() {
-  const response = await fetch(apiUrl + '/restaurants');
-  const restaurants = await response.json();
-  console.log(restaurants);
-  sortAlphabeticallyByName(restaurants);
-  restaurants.forEach(addRestaurantToTable);
+  try {
+    const restaurants = await fetchData(apiUrl + '/restaurants');
+    console.log(restaurants);
+    sortAlphabeticallyByName(restaurants);
+    restaurants.forEach(addRestaurantToTable);
+  } catch (error) {
+    console.error(error.message);
+  }
 }
 
 getRestaurants();
