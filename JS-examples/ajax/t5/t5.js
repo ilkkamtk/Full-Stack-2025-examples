@@ -79,9 +79,8 @@ const showModal = (restaurant, courses) => {
   Phone number: <a href="tel:${restaurant.phone}">${restaurant.phone}</a><br>
   Company: ${restaurant.company}
   </p>
-
+  ${coursesHtml}
   `;
-  dialog.innerHTML += coursesHtml;
 
   dialog.querySelector('button').addEventListener('click', () => {
     dialog.close();
