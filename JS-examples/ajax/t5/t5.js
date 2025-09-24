@@ -31,7 +31,33 @@ const googleMaps = (restaurant) => {
   return `https://maps.google.com/?q=${restaurant.address},${restaurant.postalCode},${restaurant.city}`;
 };
 
-const showModal = (restaurant) => {
+const showModal = (restaurant, courses) => {
+  let coursesHtml = `
+  <table>
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Diet
+            </th>
+        </tr>
+    </thead>
+    <tbody>`;
+  for (const course of courses) {
+    coursesHtml += `
+    <tr>
+        <td>${course.name}</td>
+        <td>${course.price}</td>
+        <td>${course.diets}</td>
+    </tr>`;
+  }
+  coursesHtml += '</tbody>';
+
   const dialog = document.querySelector('dialog');
 
   // use showModal() method, as .open = true; or .show() opens the modal in the bottom of the page
@@ -55,6 +81,7 @@ const showModal = (restaurant) => {
   </p>
 
   `;
+  dialog.innerHTML += coursesHtml;
 
   dialog.querySelector('button').addEventListener('click', () => {
     dialog.close();
@@ -79,12 +106,16 @@ const addRestaurantToTable = (restaurant) => {
 
   table.append(tr);
 
-  tr.addEventListener('click', () => {
+  tr.addEventListener('click', async () => {
     removeHighlight();
 
     tr.classList.add(highlight);
 
-    showModal(restaurant);
+    const todaysMenu = await fetchData(
+      `${apiUrl}/restaurants/daily/${restaurant._id}/en`,
+    );
+    console.log(todaysMenu.courses);
+    showModal(restaurant, todaysMenu.courses);
   });
 };
 
