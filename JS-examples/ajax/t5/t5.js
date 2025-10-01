@@ -39,7 +39,7 @@ const showModal = (restaurant, courses) => {
   const dialog = document.querySelector('dialog');
   dialog.showModal();
 
-  dialog.innerHTML = restaurantModal(restaurant, googleMaps);
+  dialog.innerHTML = restaurantModal(restaurant, googleMaps, courses);
 
   dialog.querySelector('button').addEventListener('click', () => {
     dialog.close();

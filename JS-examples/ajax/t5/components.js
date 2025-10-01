@@ -13,7 +13,7 @@ const restaurantRow = (restaurant) => {
   return tr;
 };
 
-const restaurantModal = (restaurant, googleMaps) => {
+const restaurantModal = (restaurant, googleMaps, courses) => {
   const { name, address, postalCode, city, phone, company } = restaurant;
   let restaurantHtml = `
     <div class="dialog-head">
