@@ -1,5 +1,8 @@
+'use strict';
+import { fetchData } from './utils/commonFunctions.js';
+import { apiUrl } from './utils/variables.js';
+
 // your code here
-const apiUrl = 'https://media1.edu.metropolia.fi/restaurant/api/v1';
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 const sortAlphabeticallyByName = (list) => {
