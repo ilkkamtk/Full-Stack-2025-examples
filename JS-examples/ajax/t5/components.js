@@ -9,8 +9,7 @@ const restaurantRow = (restaurant) => {
   tdAddress.innerText = address;
   tdCompany.innerText = company;
 
-  tr.append(tdName);
-  tr.append(tdAddress);
+  tr.append(tdName, tdAddress, tdCompany);
   return tr;
 };
 
