@@ -1,4 +1,5 @@
 'use strict';
+import { restaurantRow } from './components.js';
 import { fetchData } from './utils/commonFunctions.js';
 import { apiUrl } from './utils/variables.js';
 
@@ -97,15 +98,7 @@ const table = document.querySelector('table');
 
 // create function which receives restaurant value from restaurants array
 const addRestaurantToTable = (restaurant) => {
-  const tr = document.createElement('tr');
-  const tdName = document.createElement('td');
-  const tdAddress = document.createElement('td');
-
-  tdName.innerText = restaurant.name;
-  tdAddress.innerText = restaurant.address;
-
-  tr.append(tdName);
-  tr.append(tdAddress);
+  const tr = restaurantRow(restaurant);
 
   table.append(tr);
 
