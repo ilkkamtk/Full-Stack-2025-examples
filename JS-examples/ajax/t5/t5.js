@@ -35,6 +35,7 @@ const googleMaps = (restaurant) => {
 };
 
 const showModal = (restaurant, courses) => {
+  const { name, address, postalCode, city, phone, company } = restaurant;
   let coursesHtml = `
   <table>
     <thead>
@@ -51,12 +52,12 @@ const showModal = (restaurant, courses) => {
         </tr>
     </thead>
     <tbody>`;
-  for (const course of courses) {
+  for (const { name, price, diets } of courses) {
     coursesHtml += `
     <tr>
-        <td>${course.name}</td>
-        <td>${course.price}</td>
-        <td>${course.diets}</td>
+        <td>${name}</td>
+        <td>${price || 'no price definded'}</td>
+        <td>${diets || 'no diets definded'}</td>
     </tr>`;
   }
   coursesHtml += '</tbody>';
@@ -70,17 +71,17 @@ const showModal = (restaurant, courses) => {
 
   dialog.innerHTML = `
   <div class="dialog-head">
-    <h1>${restaurant.name}</h1>
+    <h1>${name}</h1>
 
     <button type="button">❌</button>
   </div>
 
   <p>
-  Address: <a href="${googleMaps(restaurant)}">${restaurant.address}</a><br>
-  Postal code: ${restaurant.postalCode}<br>
-  City: ${restaurant.city}<br>
-  Phone number: <a href="tel:${restaurant.phone}">${restaurant.phone}</a><br>
-  Company: ${restaurant.company}
+  Address: <a href="${googleMaps(restaurant)}">${address}</a><br>
+  Postal code: ${postalCode}<br>
+  City: ${city}<br>
+  Phone number: <a href="tel:${phone}">${phone}</a><br>
+  Company: ${company}
   </p>
   ${coursesHtml}
   `;
@@ -121,7 +122,7 @@ const addRestaurantToTable = (restaurant) => {
   });
 };
 
-async function getRestaurants() {
+const getRestaurants = async () => {
   try {
     const restaurants = await fetchData(apiUrl + '/restaurants');
     console.log(restaurants);
@@ -130,6 +131,6 @@ async function getRestaurants() {
   } catch (error) {
     console.error(error.message);
   }
-}
+};
 
 getRestaurants();
